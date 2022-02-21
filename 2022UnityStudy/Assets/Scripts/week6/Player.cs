@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     Rigidbody2D rb;
     Animator anim;
 
+    public int health;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,5 +39,15 @@ public class Player : MonoBehaviour
         input = Input.GetAxisRaw("Horizontal");
         
         rb.velocity = new Vector2(input * speed, rb.velocity.y);
+    }
+
+    public void TakeDamage(int damageAmount){
+        health -= damageAmount;
+
+        if(health <= 0){
+            // Destroy Player
+            Destroy(gameObject);
+            
+        }
     }
 }
